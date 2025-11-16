@@ -17,17 +17,38 @@ function debug(){
     console.log(A, op, B, "=", C);
 }
 
+function swapSign(){
+    if (C != null){
+        A = C.toString();
+        C = null;
+    }
+    if (operation != null){
+        if (B == null) B = "-0";
+        else if (B.charAt(0) != "-") B = "-" + B;
+        else B = B.slice(1);
+        display.textContent = B;
+    }
+    else {
+        if (A.charAt(0) != "-") A = "-" + A;
+        else A = A.slice(1);
+        display.textContent = A;
+    }
+    debug();
+}
+
 function concatNumber(n){
     if (C != null) C = null;
     if (operation == null){
-        if (A == "0" && n == "0") return;
+        if ((A == "0" || A == "-0") && n == "0") return;
         if (A == "0") A = n;
+        else if (A == "-0") A = "-" + n;
         else A += n;
         display.textContent = A;
     }
     else {
-        if (B == "0" && n == "0") return;
+        if ((B == "0" || B == "-0") && n == "0") return;
         if (B == "0" || B == null) B = n;
+        else if (B == "-0") B = "-" + n;
         else B += n;
         display.textContent = B;
     }
@@ -57,13 +78,20 @@ function operate(op){
 }
 
 function clearDisplay(){
-    if (C != null) C = null;
+    if (C != null){
+        C = null;
+        display.textContent = A;
+    }
     if (B == null || B == "0"){
         A = "0";
         B = null;
         operation = null;
+        display.textContent = A;
     }
-    else B = "0";
+    else {
+        B = "0";
+        display.textContent = B;
+    }
 
     btnReset.textContent = "AC";
     debug();    
