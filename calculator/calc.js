@@ -36,6 +36,24 @@ function swapSign(){
     debug();
 }
 
+function addDecimal(){
+    if (C != null){
+        C = null;
+        A = "0.";
+    }
+    else if (operation != null && (B == null || B.indexOf(".") == -1)){
+        if (B == null) B = "0.";
+        else B += ".";
+        display.textContent = B;
+    }
+    else if (A.indexOf(".") == -1){
+        A += ".";
+        display.textContent = A;
+    }
+    btnReset.textContent = "C";
+    debug();
+}
+
 function concatNumber(n){
     if (C != null) C = null;
     if (operation == null){

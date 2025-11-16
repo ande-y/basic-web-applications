@@ -13,6 +13,7 @@ p {
     background-color: rgb(40, 40, 40);
     
     padding: 10px;
+    border-radius: 15px;
 
     display: flex;
     flex-direction: column;
@@ -47,11 +48,14 @@ button {
     font-size: 25px;
     color: white;
 }
+button:hover {
+    border-color: rgb(255, 128, 0);
+}
+button:active {
+    background-color: rgb(100, 57, 0);
+}
 
 .longBtn {
-    width: 128px;
-}
-.MidBtn {
     width: 85px;
 }
 
