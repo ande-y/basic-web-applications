@@ -1,68 +1,72 @@
 const btnReset = document.getElementById("reset");
 const display = document.getElementById("numberDisplay");
 
-let step = 0;
 let A = "0";
-let B = "0";
+let B = null;
+let C = null;
 let operation = null;
 
+function debug(){
+    let op;
+    if (operation == null) op = null;
+    else if (operation == 1) op = "+";
+    else if (operation == 2) op = "-";
+    else if (operation == 3) op = "*";
+    else op = "/";
+
+    console.log(A, op, B, "=", C);
+}
+
 function concatNumber(n){
-    if (step == 0){
+    if (C != null) C = null;
+    if (operation == null){
         if (A == "0" && n == "0") return;
         if (A == "0") A = n;
         else A += n;
         display.textContent = A;
     }
-    else if(step == 1){
+    else {
         if (B == "0" && n == "0") return;
-        if (B == "0") B = n;
+        if (B == "0" || B == null) B = n;
         else B += n;
         display.textContent = B;
     }
-    else {
-        A = n;
-        step = 0;
-        display.textContent = A;
-    }
 
     btnReset.textContent = "C";
-    console.log(A, " ", B);
+    debug();    
 }
 
-function changeOperation(op){
-    if (step == 0) step++;
-    else if (step == 1){
-        calculate();
+function getAns(){
+    if (B != null) calculate();
+    debug();    
+}
+
+function operate(op){
+    if (C != null){
+        A = C.toString();
+        C = null;
     }
-    else {
+    if (B == null) operation = op;
+    else if (B != null){
         calculate();
-        step--;
+        A = C.toString();
+        C = null;
+        operation = op;
     }
-    operation = op;
+    debug();    
 }
 
 function clearDisplay(){
-    if (step == 0){
+    if (C != null) C = null;
+    if (B == null || B == "0"){
         A = "0";
-        display.textContent = A;
-    }
-    else if (step == 1 && B == "0"){
-        step--;
-        A = 0;
+        B = null;
         operation = null;
-        display.textContent = A;
     }
-    else if (step == 1){
-        B = "0";
-        display.textContent = B;
-    }
-    else {
-        step = 0;
-        A = "0";
-        B = "0";
-        display.textContent = A;
-    }
+    else B = "0";
+
     btnReset.textContent = "AC";
+    debug();    
 }
 
 function calculate(){
@@ -73,11 +77,15 @@ function calculate(){
     else if (operation == 2) numA -= numB;
     else if (operation == 3) numA *= numB;
     else if (operation == 4) numA /= numB;
-    else display.textContent = "<!> Error";
+    else {
+        display.textContent = "Error";
+        return;
+    }
+    
+    C = numA.toString();
+    display.textContent = C;
 
-    A = numA.toString();
-    B = "0";
-    aComplete = false;
-
-    display.textContent = A;
+    A = "0";
+    B = null;
+    operation = null;
 }
