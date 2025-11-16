@@ -9,42 +9,42 @@
 </head>
 
 <body>
-  <div id = "mainContainer">
-    <div id = "displayPanel">
-      <p id = "numberDisplay">0</p>
+  <div id="mainContainer">
+    <div id="displayPanel">
+      <p id="numberDisplay">0</p>
     </div> 
 
     <div>
-      <button class = "longButton" id = "reset" onclick = "clear()">AC</button>
-      <button id = "div">÷</button>
+      <button class="longButton" id="reset" onclick="clearDisplay()">AC</button>
+      <button id="div" onclick="changeOperation('4')">÷</button>
     </div> 
 
     <div>
-      <button id = "seven" onclick = "concatNumber('7')">7</button>
-      <button id = "eight" onclick = "concatNumber('8')">8</button>
-      <button id = "nine" onclick = "concatNumber('9')">9</button>
-      <button id = "mult">×</button>
+      <button id="seven" onclick="concatNumber('7')">7</button>
+      <button id="eight" onclick="concatNumber('8')">8</button>
+      <button id="nine" onclick="concatNumber('9')">9</button>
+      <button id="mult" onclick="changeOperation('3')">×</button>
     </div> 
 
     <div>
-      <button id = "four" onclick = "concatNumber('4')">4</button>
-      <button id = "five" onclick = "concatNumber('5')">5</button>
-      <button id = "six" onclick = "concatNumber('6')">6</button>
-      <button id = "sub">-</button>
+      <button id="four" onclick="concatNumber('4')">4</button>
+      <button id="five" onclick="concatNumber('5')">5</button>
+      <button id="six" onclick="concatNumber('6')">6</button>
+      <button id="sub" onclick="changeOperation('2')">-</button>
     </div> 
 
     <div>
-      <button id = "one" onclick = "concatNumber('1')">1</button>
-      <button id = "two" onclick = "concatNumber('2')">2</button>
-      <button id = "three" onclick = "concatNumber('3')">3</button>
-      <button id = "add">+</button>
+      <button id="one" onclick="concatNumber('1')">1</button>
+      <button id="two" onclick="concatNumber('2')">2</button>
+      <button id="three" onclick="concatNumber('3')">3</button>
+      <button id="add" onclick="changeOperation('1')">+</button>
     </div> 
 
     <div>
-      <button class = "longButton" id = "zero" onclick = "concatNumber('0')">0</button>
-      <button id = "equal">=</button>
+      <button class="longButton" id="zero" onclick="concatNumber('0')">0</button>
+      <button id="equal" onclick="calculate()">=</button>
     </div>
   </div>
 
-  <script src = "calc.js"></script>
+  <script src="calc.js"></script>
 </body>

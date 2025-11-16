@@ -1,77 +1,83 @@
-const btn0 = document.getElementById("zero");
-const btn1 = document.getElementById("one");
-const btn2 = document.getElementById("two");
-const btn3 = document.getElementById("three");
-const btn4 = document.getElementById("four");
-const btn5 = document.getElementById("five");
-const btn6 = document.getElementById("six");
-const btn7 = document.getElementById("seven");
-const btn8 = document.getElementById("eight");
-const btn9 = document.getElementById("nine");
-
-const reset = document.getElementById("reset");
-const btnAdd = document.getElementById("add");
-const btnSub = document.getElementById("sub");
-const btnMult = document.getElementById("mult");
-const btnDiv = document.getElementById("div");
-const btnEql = document.getElementById("equal");
-
+const btnReset = document.getElementById("reset");
 const display = document.getElementById("numberDisplay");
 
-let num1Set = false;
-let num2Set = false;
-let num1 = "0";
-let num2 = "0";
-let operation = "add";
-
-console.log("display", display, "btn9", btn9);
+let step = 0;
+let A = "0";
+let B = "0";
+let operation = null;
 
 function concatNumber(n){
-    if (num1 == "0" && n == "0") return;
-    if (num1 == "0") num1 = n;
-    else num1 += n;
-    
-    console.log(typeof num1);
-    console.log(`num1 = ${num1}`);
-    display.textContent = num1;
+    if (step == 0){
+        if (A == "0" && n == "0") return;
+        if (A == "0") A = n;
+        else A += n;
+        display.textContent = A;
+    }
+    else if(step == 1){
+        if (B == "0" && n == "0") return;
+        if (B == "0") B = n;
+        else B += n;
+        display.textContent = B;
+    }
+    else {
+        A = n;
+        step = 0;
+        display.textContent = A;
+    }
+
+    btnReset.textContent = "C";
+    console.log(A, " ", B);
 }
 
 function changeOperation(op){
+    if (step == 0) step++;
+    else if (step == 1){
+        calculate();
+    }
+    else {
+        calculate();
+        step--;
+    }
     operation = op;
 }
 
-function clear(){
-    if (!num1Set){
-        num2Set = false;
-        num1 = "0";
-        num2 = "0";
-        operation = "add";
+function clearDisplay(){
+    if (step == 0){
+        A = "0";
+        display.textContent = A;
     }
-    display.textContent = num1;
+    else if (step == 1 && B == "0"){
+        step--;
+        A = 0;
+        operation = null;
+        display.textContent = A;
+    }
+    else if (step == 1){
+        B = "0";
+        display.textContent = B;
+    }
+    else {
+        step = 0;
+        A = "0";
+        B = "0";
+        display.textContent = A;
+    }
+    btnReset.textContent = "AC";
 }
 
 function calculate(){
-    if (operation = 1) num1 += num2;
-    else if (operation = 2) num1 -= num2;
-    else if (operation = 3) num1 *= num2;
-    else num1 /= num2;
-    display.textContent = num1;
+    let numA = Number(A);
+    let numB = Number(B);
+
+    if (operation == 1) numA += numB;
+    else if (operation == 2) numA -= numB;
+    else if (operation == 3) numA *= numB;
+    else if (operation == 4) numA /= numB;
+    else display.textContent = "<!> Error";
+
+    A = numA.toString();
+    B = "0";
+    aComplete = false;
+
+    display.textContent = A;
 }
-
-// btn0.onclick = concatNumber("0");
-// btn1.onclick = concatNumber("1");
-// btn2.onclick = concatNumber("2");
-// btn3.onclick = concatNumber("3");
-// btn4.onclick = concatNumber("4");
-// btn5.onclick = concatNumber("5");
-// btn6.onclick = concatNumber("6");
-// btn7.onclick = concatNumber("7");
-// btn8.onclick = concatNumber("8");
-// btn9.onclick = concatNumber("9");
-
-// reset.onclick = clear;
-// btnAdd.onclick = changeOperation(1);
-// btnSub.onclick = changeOperation(2);
-// btnMult.onclick = changeOperation(3);
-// btnDiv.onclick = changeOperation(4);
-// btnEql.onclick = calculate;
