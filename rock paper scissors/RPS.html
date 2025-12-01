@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>rock paper scissor</title>
+        <link rel="stylesheet" href="RPS.css">
+    </header>
+
+    <body>
+        <h1>Rock Paper Scissors Game</h1>
+        <div class="btnContainer"> 
+            <button id="rock" onclick="playGame(0)">🗿</button>
+            <button id="paper" onclick="playGame(1)">🧾</button>
+            <button id="scissor" onclick="playGame(2)">✂️</button>
+        </div>
+
+        <div id="displayPlayer">You Chose:</div>
+        <div id="displayComputer">Computer Chose:</div>
+        <div id="displayWinner"></div>
+
+        <div class="winLogger">
+            <div class="col">
+                <p>Your Wins</p>
+                <p id="myWinCounter">0</p>
+            </div>
+            <div class="col">
+                <p>Computer's Wins</p>
+                <p id="computerWinCounter">0</p>
+            </div>
+        </div>
+
+        <script src="RPS.js"></script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+p {
+    margin: 0px;
+}
+
+button {
+    width: 100px;
+    height: 100px;
+
+    background-color: rgb(140, 140, 140);
+    border: solid 10px rgb(195, 195, 195);
+    border-radius: 10px;
+
+    font-size: 50px;
+}
+
+button:hover {
+    border-color: rgb(126, 154, 255);
+}
+button:active {
+    background-color: rgb(97, 103, 129);
+}
+
+#displayWinner {
+    margin: 20px;
+    min-height: 40px;
+    min-width: 90px;
+    background-color: lightgray;
+
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.winLogger {
+    display: flex;
+}
+
+.col {
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
