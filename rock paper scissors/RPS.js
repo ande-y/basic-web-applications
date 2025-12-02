@@ -14,18 +14,20 @@ function playGame(choice){
     let myChoice = choice;
     let oppChoice = Math.floor(Math.random() * 3);
 
+    console.log(oppChoice)
+
     myText.textContent = `Your Choice: ${choices[myChoice]}`;
     oppText.textContent = `Computer's Choice: ${choices[oppChoice]}`;
 
     if (myChoice == oppChoice){
         winText.textContent = "You Tied!";
-        winnerBox.style.backgroundColor = "lightgray";
+        winnerBox.style.backgroundColor = "gray";
     }
-    else if (myChoice > oppChoice || (myChoice == 0 && oppChoice == 2)){
+    else if ((myChoice > oppChoice || (myChoice == 0 && oppChoice == 2)) && !(myChoice == 2 && oppChoice == 0)){
         winText.textContent = "You Won!";
         myWins++;
         myCounter.textContent = myWins;
-        winnerBox.style.backgroundColor = "lightgreen";
+        winnerBox.style.backgroundColor = "green";
     }
     else {
         winText.textContent = "You Lost!";
